@@ -33,7 +33,23 @@
     .container{max-width:980px;margin:0 auto;}
     header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px;}
     .logo{display:flex;gap:12px;align-items:center;}
-    .badge{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1f2937,#111827);box-shadow: 0 6px 18px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);font-weight:700;font-size:18px;color:var(--accent);border:1px solid rgba(255,184,107,0.08);}
+    .badge {
+  width:56px;
+  height:56px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background-image: url('rcm.png'); /* ganti dengan path gambar kamu */
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  font-weight:700;
+  font-size:18px;
+  color: var(--accent);
+  border:1px solid rgba(255,184,107,0.08);
+}
+
     h1{margin:0;font-size:20px}
     header p{margin:0;color:var(--muted);font-size:13px}
     main{display:grid;grid-template-columns: 1fr 380px;gap:20px;align-items:start;}
@@ -73,7 +89,7 @@
   <div class="container">
     <header>
       <div class="logo">
-        <div class="badge">RCM</div>
+        <div class="badge"></div>
         <div>
           <h1>Random Capital Market</h1>
           <p>$RCM — No charts. No plans. Just vibes 🎲</p>
