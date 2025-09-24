@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Random Capital Market — $RCM</title>
+  <meta name="description" content="Random Capital Market (RCM) — No charts. No plans. Just pure randomness."/>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1724;
+      --accent:#ffb86b;
+      --muted:#9aa4bf;
+      --glass: rgba(255,255,255,0.03);
+      --glass2: rgba(255,255,255,0.02);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:
+        radial-gradient(800px 400px at 10% 10%, rgba(255,184,107,0.03), transparent 8%),
+        radial-gradient(600px 300px at 90% 90%, rgba(99,102,241,0.03), transparent 10%),
+        var(--bg);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+      padding:32px;
+    }
+
+    .container{max-width:980px;margin:0 auto;}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px;}
+    .logo{display:flex;gap:12px;align-items:center;}
+    .badge{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1f2937,#111827);box-shadow: 0 6px 18px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);font-weight:700;font-size:18px;color:var(--accent);border:1px solid rgba(255,184,107,0.08);}
+    h1{margin:0;font-size:20px}
+    header p{margin:0;color:var(--muted);font-size:13px}
+    main{display:grid;grid-template-columns: 1fr 380px;gap:20px;align-items:start;}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:14px;padding:20px;border:1px solid var(--glass2);box-shadow: 0 8px 30px rgba(2,6,23,0.6);}
+    .hero{padding:24px;border-radius:12px;background: linear-gradient(180deg, rgba(255,184,107,0.03), transparent);display:flex;gap:20px;align-items:center;margin-bottom:14px;}
+    .hero .left{flex:1}
+    .title{font-size:28px;margin:0 0 6px 0;letter-spacing:-0.5px}
+    .subtitle{color:var(--muted);margin:0 0 12px 0}
+    .cta-row{display:flex;gap:10px;align-items:center}
+    .btn{background:linear-gradient(90deg,var(--accent), #ffd8a8);color:#0b1020;padding:10px 14px;border-radius:10px;border:none;font-weight:700;cursor:pointer;box-shadow: 0 8px 20px rgba(255,184,107,0.08);}
+    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:10px 12px;border-radius:10px;cursor:pointer;}
+    .pill{display:inline-block;background:rgba(255,255,255,0.02);padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.02);color:var(--muted);font-size:13px}
+    .desc{color:var(--muted);font-size:15px;margin-top:8px}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .tokenomics ul{list-style:none;padding:0;margin:8px 0 0 0;display:grid;gap:8px}
+    .tokenomics li{background:var(--card);padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);font-size:14px;color:var(--muted)}
+    .roadmap{margin-top:12px}
+    .roadmap ol{padding-left:18px;color:var(--muted)}
+    .disclaimer{font-size:13px;color:#f7c6c6;background:rgba(255,0,0,0.03);padding:10px;border-radius:8px;margin-top:12px;border:1px solid rgba(255,0,0,0.06)}
+    .right-col{position:sticky;top:32px}
+    .panel{padding:16px;border-radius:12px;background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.01));border:1px solid var(--glass)}
+    .spinner{background:linear-gradient(180deg,#0b1220, #071028); border-radius:12px;padding:18px;text-align:center;border:1px dashed rgba(255,255,255,0.03);}
+    .wheel{width:220px;height:220px;border-radius:50%;margin:10px auto;display:flex;align-items:center;justify-content:center;background:conic-gradient(#1f2937 0 12.5%, #111827 12.5% 25%, #1f2937 25% 37.5%, #111827 37.5% 50%, #1f2937 50% 62.5%, #111827 62.5% 75%, #1f2937 75% 87.5%, #111827 87.5% 100%);box-shadow: 0 10px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);position:relative;cursor:pointer;transition:transform 2.5s cubic-bezier(.2,.9,.3,1);}
+    .wheel:after{content:"";position:absolute;left:50%;transform:translateX(-50%);top:-14px;width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:14px solid var(--accent);}
+    .wheel .center{width:92px;height:92px;border-radius:50%;background:linear-gradient(180deg,#0b1220,#081028);display:flex;align-items:center;justify-content:center;border:6px solid rgba(255,255,255,0.03);font-weight:800;color:var(--accent);}
+    .spin-cta{margin-top:12px;display:flex;gap:8px;justify-content:center}
+    .small{font-size:13px;color:var(--muted)}
+    .socials{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+    .socials a{padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.02);color:var(--muted);text-decoration:none;font-weight:600;font-size:13px}
+    footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
+    @media (max-width:920px){main{grid-template-columns:1fr;}.right-col{position:relative;top:unset}}
+    .glow{animation:glow 2.6s ease-in-out infinite;}
+    @keyframes glow{0%{box-shadow:0 0 0px rgba(255,184,107,0.06)}50%{box-shadow:0 0 40px rgba(255,184,107,0.06)}100%{box-shadow:0 0 0px rgba(255,184,107,0.06)}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="badge">RCM</div>
+        <div>
+          <h1>Random Capital Market</h1>
+          <p>$RCM — No charts. No plans. Just vibes 🎲</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <div class="pill">Ticker: <strong style="color:var(--accent);margin-left:8px">$RCM</strong></div>
+        <button class="ghost" onclick="copyTicker()">COPY CA</button>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="card hero">
+          <div class="left">
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="font-size:36px">🎲</div>
+              <div>
+                <div class="title">Random Capital Market</div>
+                <div class="subtitle">Embrace chaos. Spin the wheel. Maybe you're rich, maybe not.</div>
+              </div>
+            </div>
+
+            <div class="desc">
+              RCM is a meme coin idea: serious about being unserious. Perfect for communities who love humor, hopium, and bad luck.  
+              For entertainment purposes only — not financial advice.
+            </div>
+
+            <div style="margin-top:14px" class="cta-row">
+              <button class="btn glow" onclick="fakeMint()">Join the Chaos</button>
+              <button class="ghost" onclick="shareX()">Share on X</button>
+            </div>
+
+            <div style="margin-top:14px" class="small">Tip: reply on X with <strong>🎲</strong> to join the spin challenge!</div>
+          </div>
+
+          <div style="width:240px">
+            <div class="card tokenomics" style="padding:14px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)">
+              <strong style="font-size:15px">Tokenomics (meme)</strong>
+              <ul>
+                <li>💎 Total supply: 1,000,000,000 RCM</li>
+                <li>🎉 Fair Launch</li>
+                <li>🦍 Dev Tax: 0% (we're apes)</li>
+                <li>🏝️ Liquidity: Locked</li>
+              </ul>
+              <div style="margin-top:10px;font-size:13px;color:var(--muted)">Disclaimer: for entertainment only. Not financial advice.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <h3 style="margin-top:0">About RCM</h3>
+          <p style="color:var(--muted);margin-top:6px">
+            Random Capital Market is a community for those who believe in:  
+            <strong>luck > logic</strong>. We make memes, lore, and randomness events—spin wheel, surprise airdrops, and community challenges.
+          </p>
+
+          <div style="margin-top:12px" class="two-col">
+            <div>
+              <h4 style="margin:6px 0">How to play</h4>
+              <ol style="color:var(--muted);margin:6px 0 0 18px">
+                <li>Follow us on X</li>
+                <li>Reply 🎲 on the spin challenge post</li>
+                <li>Join Discord/Telegram for random airdrop events</li>
+              </ol>
+            </div>
+            <div>
+              <h4 style="margin:6px 0">Community roles</h4>
+              <ul style="color:var(--muted);margin:6px 0 0 18px">
+                <li>Meme creator</li>
+                <li>Spin master</li>
+                <li>Bagholder extraordinaire</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="roadmap">
+            <h4 style="margin:12px 0 6px 0">Roadmap (totally random)</h4>
+            <ol>
+              <li>Q1: Launch Twitter + Discord, create official memes</li>
+              <li>Q2: Community spin events</li>
+              <li>Q3: Collaborate with other apes (maybe)</li>
+              <li>Q4: Evaluate if we still want to exist</li>
+            </ol>
+          </div>
+        </div>
+
+      </section>
+
+      <aside class="right-col">
+        <div class="panel spinner card">
+          <h3 style="margin:6px 0 2px 0">Spin The Wheel</h3>
+          <div class="small" style="margin-bottom:8px">Click the wheel — results are random (for real)</div>
+
+          <div id="wheel" class="wheel" title="Click to spin">
+            <div class="center" id="wheelLabel">$RCM</div>
+          </div>
+
+          <div class="spin-cta">
+            <button class="btn" id="spinBtn" onclick="spinWheel()">SPIN</button>
+            <button class="ghost" onclick="luckyPick()">Lucky Pick</button>
+          </div>
+
+          <div id="spinResult" style="margin-top:12px;color:var(--muted);min-height:34px;text-align:center"></div>
+
+          <div class="socials" style="margin-top:12px">
+            <a href="#" onclick="openLink('https://x.com/RCMOnSol')">X / Twitter</a>
+          </div>
+        </div>
+
+        <div class="panel card" style="margin-top:12px;text-align:center">
+          <strong style="display:block">Meme of the Week</strong>
+          <div style="font-size:64px;margin-top:8px">🐒🎲</div>
+          <div style="color:var(--muted);margin-top:8px">Tag us for a chance to be featured!</div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      Crafted with hopium & chaos • © Random Capital Market
+    </footer>
+  </div>
+
+  <script>
+    // COPY CA button
+    function copyTicker(){
+      const CA = "$afijadsasdasd"; // ticker yang dicopy
+      navigator.clipboard?.writeText(CA).then(()=> {
+        alert('Ticker ' + CA + ' copied to clipboard!');
+      }).catch(()=> { 
+        alert('Failed to copy. Copy manually: ' + CA); 
+      });
+    }
+
+    function fakeMint(){
+      alert('Nice try! Mint is not active — this is just a fun prototype. Share first on X!');
+    }
+
+    function shareX(){
+      const text = encodeURIComponent("Introducing Random Capital Market (RCM) 🎲 — No charts. No plans. Just vibes. #RCM");
+      window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+    }
+
+    function openLink(u){window.open(u, '_blank');}
+
+    // Spinner logic
+    const wheel = document.getElementById('wheel');
+    const spinBtn = document.getElementById('spinBtn');
+    const spinResult = document.getElementById('spinResult');
+    const wheelLabel = document.getElementById('wheelLabel');
+
+    const outcomes = [
+      {label:"Airdrop! 🎁", info:"You get 100 RCM (fictional)"},
+      {label:"Hopium Boost 🚀", info:"Energy +100% (hopium only)"},
+      {label:"Bag Full 👜", info:"You are now a true bagholder"},
+      {label:"RNGesus Blessed ✨", info:"All your coins are slightly shinier"},
+      {label:"rekt 💀", info:"Loss accepted. Move on."},
+      {label:"Pump Fake 📉", info:"20% fake pump detected"},
+      {label:"Moon? 🌙", info:"We saw the moon from afar"},
+      {label:"Nothing 🤷", info:"Only silence and meme"}
+    ];
+
+    let spinning = false;
+    function spinWheel(){
+      if(spinning) return;
+      spinning = true;
+      spinResult.textContent = "Spinning...";
+      const steps = Math.floor(Math.random()*8)+16;
+      const degPer = 360 / outcomes.length;
+      const endIndex = Math.floor(Math.random()*outcomes.length);
+      const extra = Math.random()*degPer;
+      const finalDeg = 360*steps + (endIndex * degPer) + extra;
+      wheel.style.transform = `rotate(${finalDeg}deg)`;
+      wheel.style.transition = "transform 3s cubic-bezier(.2,.9,.3,1)";
+      spinBtn.disabled = true;
+      setTimeout(()=> {
+        const result = outcomes[outcomes.length - 1 - endIndex];
+        spinResult.innerHTML = "<strong>"+result.label+"</strong><div style='color:var(--muted);font-size:13px;margin-top:6px'>"+result.info+"</div>";
+        wheel.style.transition = "none";
+        const normalize = finalDeg % 360;
+        wheel.style.transform = `rotate(${normalize}deg)`;
+        spinning = false;
+        spinBtn.disabled = false;
+      }, 3200);
+    }
+
+    function luckyPick(){
+      const r = outcomes[Math.floor(Math.random()*outcomes.length)];
+      spinResult.innerHTML = "<strong>"+r.label+"</strong><div style='color:var(--muted);font-size:13px;margin-top:6px'>"+r.info+"</div>";
+      spinResult.style.opacity = 0;
+      spinResult.style.transition = 'opacity 0.25s';
+      setTimeout(()=> spinResult.style.opacity = 1, 10);
+    }
+
+    setTimeout(()=> {wheel.classList.add('glow');},800);
+  </script>
+</body>
+</html>
